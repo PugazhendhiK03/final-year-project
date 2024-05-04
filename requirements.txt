@@ -1,0 +1,13 @@
+Flask
+opencv-python
+numpy
+face-recognition
+flask-bcrypt
+flask-limiter
+flask-sqlalchemy
+python-dotenv
+ultralytics
+supervision==0.3.0
+secrets
+pytest
+flask

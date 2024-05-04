@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cctv system</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <link rel="stylesheet" href="../static/css/profile.css">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FullCalendar CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+
+<!-- Datepicker CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <!-- Navbar -->
+    <section class="navbar" id="navbar">
+        <!-- Left -->
+        <div class="n-left" id="n-left">
+            <ul class="n-option">
+                <li><a href="#"><i class="fa-solid fa-video"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-photo-film"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            </ul>
+        </div>
+        <!-- Right -->
+        <div class="n-right" id="right">
+            <ul class="n-option">
+                <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
+                <!-- <li><a href="#" class="user"><i class="fa-solid fa-user"></i></a></li> -->
+                
+                <!-- User Icon Dropdown -->
+                <div class="user-dropdown">
+                    <a href="#" class="user">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Live -->
+    <section class="livemonitor" id="livemonitor">
+        <!-- Left -->
+        <div class="live-left" id="live-left">
+            <img src="{{ url_for('video_feed1') }}" alt="Camera 0"/>
+            <img src="{{ url_for('video_feed2') }}" alt="Camera 1"/>
+        </div>
+        <!-- Right -->
+        <div class="live-right" id="live-right">
+            <div class="objectDetection" id="objectDetection">
+                <form id="objectForm" action="/set_object" method="POST">
+                    <label for="object_of_interest">Object of Interest:</label>
+                    <input type="text" id="object_of_interest" name="object_of_interest">
+                    <button type="submit" id="detectButton">Submit</button>
+                </form>
+                <button id="turn-off-object-detection">Turn Off Object Detection</button>
+            </div>
+
+            <!-- Face Recognition section -->
+            <div class="faceRecognition" id="faceRecognition">
+                <form id="upload-form" enctype="multipart/form-data">
+                    <input type="file" id="image-upload" accept=".jpg,.jpeg,.png" onchange="previewImage(event)" required>
+                    <img id="image-preview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin-top: 10px;">
+                    <input type="submit" value="Upload Image" class="uploadBtn">
+                </form>
+                <button id="turn-off-face-recognition">Turn Off Face Recognition</button> <!-- New button -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Library -->
+    <section class="library" id="library">
+        <div id="recorded-videos-list"></div> <!-- Container for recorded videos list -->
+
+        <!-- Modal Popup for Video Playback -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <video id="videoPlayer" controls autoplay></video> <!-- Added controls and autoplay attributes -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Alerts -->
+    <section class="alerts" id="alerts">
+        <div class="matched-faces">
+            <h2>Matched Faces</h2>
+            <div id="matched-faces-images"></div>
+        </div>
+        <div class="object-images">
+            <h2>Object Images</h2>
+            <div id="object-images"></div>
+        </div>
+    </section>
+
+
+    <!-- Toolbar -->
+    <section class="toolbar" id="toolbar">
+        <div class="recording-controls">
+            <button id="record-btn" class="toolBtn">Start Recording</button>
+            <button id="reload-matched-faces" class="toolBtn">Reload Matched Faces</button>
+            <button id="reload-object-images" class="toolBtn">Reload Object Images</button>
+            <button id="reload-recorded-videos" class="toolBtn">Reload Recorded Videos</button>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/script.js"></script>
+    <!-- FullCalendar JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+<!-- Datepicker JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"></script>
+</body>
+</html>
+
+
+
+
+

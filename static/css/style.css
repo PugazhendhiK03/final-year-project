@@ -1,0 +1,325 @@
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Body styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.n-option {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.n-option li {
+    margin-right: 20px;
+}
+
+.n-option a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.2rem;
+}
+
+
+.live-left {
+    display: flex;
+    gap: 5px;
+}
+
+.live-left img {
+    max-width: 100%;
+    height: auto;
+}
+
+.live-right {
+    background-color: #fff;
+}
+
+#livemonitor {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.live-left {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* padding: 10px; */
+    width: 90%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 400px; /* Set maximum height to enable scrolling */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.live-left img {
+    width: 100%;
+    height: 400px;
+    border-radius: 5px;
+    background: #ccc;
+}
+
+.live-right {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+#image-preview {
+    display: none; /* Initially hide the image preview */
+    width: 1.4in; /* Set width to approximate passport photo size */
+    height: 1.8in; /* Set height to approximate passport photo size */
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+#image-upload {
+    margin-bottom: 10px; /* Add spacing below the file input */
+}
+
+#image-preview.visible {
+    display: block; /* Show the image preview when 'visible' class is applied */
+    opacity: 1; /* Make the image fully visible */
+}
+
+.objectDetection,
+.faceRecognition,
+.status {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.objectDetection label,
+.faceRecognition label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.objectDetection input[type="text"],
+.faceRecognition input[type="file"] {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.objectDetection button[type="submit"],
+.faceRecognition button {
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#turn-off-object-detection, .uploadBtn{
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.status {
+    background-color: #e0e0e0;
+}
+
+.objectDetection,
+.faceRecognition,
+.status {
+    margin-bottom: 20px;
+}
+
+/* library */
+#library{
+    width: 100%;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Styles */
+/* Modal Popup Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    overflow: auto;
+}
+
+.modal-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    background-color: #fefefe;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+/* Close Button Styling */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Video Player Styling */
+#videoPlayer {
+    width: 100%;
+    height: auto;
+}
+
+/* Hide scrollbars when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+#recorded-videos-list {
+    max-height: 500px; /* Set maximum height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin: 0 auto; /* Center the list horizontally */
+    padding: 10px;
+    border: 1px solid #ccc; /* Add border for visual clarity */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+
+/* library end */
+
+/* alerts */
+/* Style for the alerts section */
+.alerts {
+    display: flex;
+    /* flex-direction: ; */
+    /* margin-top: 20px; */
+    gap: 10px;
+    /* margin-bottom: 5rem; */
+}
+
+/* Style for matched faces and object images containers */
+.matched-faces,
+.object-images {
+    width: 50%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* Style for the h2 headings */
+.matched-faces h2,
+.object-images h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Style for the image containers */
+#matched-faces-images,
+#object-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    max-height: 500px; /* Set maximum height for scrolling */
+    overflow-y: auto;
+}
+
+/* Style for individual images */
+#matched-faces-images img,
+#object-images img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+
+/* Toolbar styles */
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+}
+
+.recording-controls {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.toolBtn{
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .n-left {
+        display: none;
+    }
+
+    .n-right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .n-option {
+        justify-content: center;
+    }
+}
+
+
+
