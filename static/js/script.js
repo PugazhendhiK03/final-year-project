@@ -181,68 +181,58 @@ $(document).ready(function() {
     });
 
     // Function to fetch and load matched faces
-    function fetchMatchedFaces() {
-        $.get("/get_matched_faces", function(data) {
-            var matchedFacesImages = data.images;
-            var matchedFacesContainer = $('#matched-faces-images');
+function fetchMatchedFaces() {
+    $.get("/get_matched_faces", function(data) {
+        var matchedFacesImages = data.images;
+        var matchedFacesContainer = $('#matched-faces-images');
 
-            matchedFacesImages.forEach(function(image) {
-                var imageUrl = `/static/matched_faces/${image}`;
-                var imgElement = `<img src="${imageUrl}" alt="Matched Face">`;
-                matchedFacesContainer.append(imgElement);
-            });
+        matchedFacesImages.forEach(function(image) {
+            var imageUrl = `/static/matched_faces/${image}`;
+            var imgElement = `<div class="image-container"><img src="${imageUrl}" alt="Matched Face" class="full-screen-image" data-url="${imageUrl}"><div class="filename">${image}</div></div>`;
+            matchedFacesContainer.append(imgElement);
         });
-    }
+    });
+}
 
-    // Function to fetch and load object images
-    function fetchObjectImages() {
-        $.get("/get_object_images", function(data) {
-            var objectImages = data.images;
-            var objectImagesContainer = $('#object-images');
+// Function to fetch and load object images
+function fetchObjectImages() {
+    $.get("/get_object_images", function(data) {
+        var objectImages = data.images;
+        var objectImagesContainer = $('#object-images');
 
-            objectImages.forEach(function(image) {
-                var imageUrl = `/static/object_images/${image}`;
-                var imgElement = `<img src="${imageUrl}" alt="Object Image">`;
-                objectImagesContainer.append(imgElement);
-            });
+        objectImages.forEach(function(image) {
+            var imageUrl = `/static/object_images/${image}`;
+            var imgElement = `<div class="image-container"><img src="${imageUrl}" alt="Object Image" class="full-screen-image" data-url="${imageUrl}"><div class="filename">${image}</div></div>`;
+            objectImagesContainer.append(imgElement);
         });
-    }
+    });
+}
 
-    // Initial load of matched faces and object images
-    fetchMatchedFaces();
-    fetchObjectImages();
+// Initial load of matched faces and object images
+fetchMatchedFaces();
+fetchObjectImages();
+
+// Event listener for full screen images
+$(document).on('click', '.full-screen-image', function() {
+    var imageUrl = $(this).data('url');
+    openFullScreenImage(imageUrl);
 });
 
+// Function to open image in full screen
+function openFullScreenImage(imageUrl) {
+    var modal = $('<div class="full-screen-modal">').appendTo('body');
+    var image = $('<img class="full-screen-image-modal">').attr('src', imageUrl).appendTo(modal);
+
+    // Close modal on click
+    modal.click(function() {
+        modal.remove();
+    });
+}
 
 
 
-// libray playback
-// $(document).ready(function() {
-//     // Function to fetch and load recorded videos
-//     function fetchRecordedVideos() {
-//         $.get("/get_recorded_videos", function(data) {
-//             var recordedVideos = data.videos;
-//             var recordedVideosContainer = $('#recorded-videos');
 
-//             recordedVideos.forEach(function(video) {
-//                 var videoUrl = `/recordings/${video}`;
-//                 var videoElement = `<video controls><source src="${videoUrl}" type="video/mp4"></video>`;
-//                 recordedVideosContainer.append(videoElement);
-//             });
-//         });
-//     }
-
-//     // Initial load of recorded videos
-//     fetchRecordedVideos();
-
-//     // Reload recorded videos
-//     $('#reload-recorded-videos').click(function() {
-//         $('#recorded-videos').empty(); // Clear existing videos
-//         fetchRecordedVideos(); // Fetch and load recorded videos again
-//     });
-// });
-
-
+//  library playback
 $(document).ready(function() {
     // Function to fetch and load recorded videos
     function fetchRecordedVideos() {
@@ -307,3 +297,7 @@ function openVideoModal(videoUrl) {
         fetchRecordedVideos(); // Fetch and load recorded videos again
     });
 });
+
+
+
+})
