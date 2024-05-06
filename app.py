@@ -117,10 +117,10 @@ def gen_frames(camera, camera_name):
 
                 for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
                     match = face_recognition.compare_faces([known_face_encoding], face_encoding)
-                    label = "No Match"
+                    label = "No Match Found"
                     cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
                     if match[0]:
-                        label = "Match"
+                        label = "Match Found"
                         cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
                         if image_count[camera_name] < 3:
                             capture_image(frame, camera_name)

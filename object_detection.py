@@ -30,9 +30,11 @@ class ObjectDetector:
             in detections
             if class_id >= 0 and self.model.model.names[class_id].lower() == object_of_interest.lower() and confidence > 0.6
         ]
+        labels_ = [detection[3] for detection in detections_filtered]
         annotated_frame = self.box_annotator.annotate(
             scene=frame,
-            detections=detections_filtered
+            detections=detections_filtered,
+            labels = labels_
         )
 
         if detections_filtered:
